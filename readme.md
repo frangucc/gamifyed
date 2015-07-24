@@ -8,5 +8,5 @@
 - Never expect anyone to do anything expect for execut bash.sh at the root of each folder - that will ensure we have documented the proper instructions
 
 ### Make lot's of small commits when you work on anything programmatic or research wise
-### Make sure your commits are descriptive in github
+### Make sure your commits are descriptive
 ### Try and keep this all organized and neat
