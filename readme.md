@@ -11,5 +11,13 @@
 * https://docs.google.com/document/d/12l1Julhg4HgTGWuk19AEjHBXBF-722TihJLsS2LGSRQ/edit
 
 ### Make lot's of small commits when you work on anything programmatic
+
+- Thank you
+
 ### Make sure your commits are descriptive
+
+- Thank you
+
 ### Try and keep this all organized and neat
+
+- Thank you
