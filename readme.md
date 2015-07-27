@@ -8,7 +8,7 @@ This is the Gamifyed Developer Motherload. This directory will get thinned out a
 
 ##### Open your terminal on the node and type:
 
-`cd [/home/gamifyed/gamifyed-cli/](/home/gamifyed/gamifyed-cli/)`
+`cd /home/gamifyed/gamifyed-cli/`
 
 then RUN:
 
