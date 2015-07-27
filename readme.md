@@ -1,23 +1,10 @@
-# This is the Gamifyed Motherload
-### Please follow these conventions
+### This is the Gamifyed Developer Motherload
+#### This will get thinned out a lot when we push to production
 
-- Create a readme.md for each new folder and describe the folder or goals of the folder
-- Make you're MD file look like everyone elses in terms of Markdown
-- Document what you do in your source code at all times
-- Always document how to get your project up and running, list any dependencies and ensure it's base scripted
-- Never expect anyone to do anything expect for execut bash.sh at the root of each folder - that will ensure we have documented the proper instructions
+## TO BEGIN
 
-### Here is the central documentation for everything else written, financial, busines or research related
-* https://docs.google.com/document/d/12l1Julhg4HgTGWuk19AEjHBXBF-722TihJLsS2LGSRQ/edit
+1. cd into gamifyed-cli and run: chmod u+x cli-definitions.sh
+2. alias gamifyed="/gamifyed/gamifyed-cli/cli-definitions.sh" - be sure to use your absolute path
+3. run: gamifyed
 
-### Make lot's of small commits when you work on anything programmatic
-
-- Thank you
-
-### Make sure your commits are descriptive
-
-- Thank you
-
-### Try and keep this all organized and neat
-
-- Thank you
+#### These actions will tell your terminal to run the gamifyed C++ main entry program, which will trigger the workflow-router, which triggers a bunch of system checks, updates the users latest state, looks at the connection, populates some variables then runs game, taking you to where you left off. 

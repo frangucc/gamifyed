@@ -4,7 +4,7 @@
 
 ## When developers run the command, gamifyed, the router will run through all tests and report back the results.
 
-### TDD must be used EVERY time. Each class has a test. Find a nice CPP test library.
+### TDD must be used EVERY time. Each class has a test. Find a nice CPP test library .
 
 ### The following other cbp objects should be created:
 
