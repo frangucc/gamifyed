@@ -1,23 +1,33 @@
-# This is the Gamifyed Motherload
-### Please follow these conventions
+# Welcome!
 
-- Create a readme.md for each new folder and describe the folder or goals of the folder
-- Make you're MD file look like everyone elses in terms of Markdown
-- Document what you do in your source code at all times
-- Always document how to get your project up and running, list any dependencies and ensure it's base scripted
-- Never expect anyone to do anything expect for execut bash.sh at the root of each folder - that will ensure we have documented the proper instructions
+This is the Gamifyed Developer Motherload. This directory will get thinned out a lot when we push to production.
 
-### Here is the central documentation for everything else written, financial, busines or research related
-* https://docs.google.com/document/d/12l1Julhg4HgTGWuk19AEjHBXBF-722TihJLsS2LGSRQ/edit
+### START HERE
 
-### Make lot's of small commits when you work on anything programmatic
+***
 
-- Thank you
+##### Open your terminal on the node and type:
 
-### Make sure your commits are descriptive
+`cd /home/gamifyed/gamifyed-cli/`
 
-- Thank you
+then RUN:
 
-### Try and keep this all organized and neat
+`chmod u+x cli-definitions.sh`
 
-- Thank you
+then RUN:
+
+`alias gamifyed="/gamifyed/gamifyed-cli/cli-definitions.sh"`
+
+then RUN:
+
+`gamifyed`
+
+##### The app should start - you will know. If not, please try again or report an issue. issue@gamifyed.com
+
+*If it worked,* from now on, just run gamifyed anywhere on your node and the app will fire up!
+
+***
+
+*Notes:* These first actions will tell your terminal to run the gamifyed C++ main entry program, which will trigger the workflow-router, which triggers a bunch of system checks, updates the users latest state, looks at the connection, populates some variables then runs game, taking you to where you left off. 
+
+
