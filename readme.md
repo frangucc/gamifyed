@@ -1,18 +1,16 @@
 # Welcome!
 
-### This is the Gamifyed Developer Motherload
-This will get thinned out a lot when we push to production
+This is the Gamifyed Developer Motherload. This directory will get thinned out a lot when we push to production.
 
-***
-## TO BEGIN
-
+### START HERE
 
 ***
 
-##### Start from your node:
+##### Open your terminal on the node and type:
 
+`cd /home/gamifyed/[/gamifyed-cli/](/gamifyed-cli/)`
 
-CD into [/gamifyed-cli/](/gamifyed-cli/) and run:
+then RUN:
 
 `chmod u+x cli-definitions.sh`
 
@@ -24,7 +22,9 @@ then RUN:
 
 `gamifyed`
 
-##### The app should start! If not, please try again or report an issue. issue@gamifyed.com
+##### The app should start - you will know. If not, please try again or report an issue. issue@gamifyed.com
+
+*If it worked,* from now on, just run gamifyed anywhere on your node and the app will fire up!
 
 ***
 
