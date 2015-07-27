@@ -1,8 +1,10 @@
+# Welcome!
+
 ### This is the Gamifyed Developer Motherload
 This will get thinned out a lot when we push to production
 
 ***
-# TO BEGIN
+## TO BEGIN
 
 
 ***
