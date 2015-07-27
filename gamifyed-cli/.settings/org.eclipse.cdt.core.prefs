@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.exe.debug.1095150292/PI/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.debug.1095150292/PI/operation=append
+environment/project/cdt.managedbuild.config.gnu.exe.debug.1095150292/PI/value=/home/rushi/opt/gcc-4.7-linaro-rpi-gnueabihf-arm-linux-gnueabihf/bin
+environment/project/cdt.managedbuild.config.gnu.exe.debug.1095150292/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.debug.1095150292/appendContributed=true
+environment/project/cdt.managedbuild.config.gnu.exe.release.901776864/PI/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.release.901776864/PI/operation=append
+environment/project/cdt.managedbuild.config.gnu.exe.release.901776864/PI/value=/home/rushi/opt/gcc-4.7-linaro-rpi-gnueabihf-arm-linux-gnueabihf/bin
+environment/project/cdt.managedbuild.config.gnu.exe.release.901776864/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.release.901776864/appendContributed=true
