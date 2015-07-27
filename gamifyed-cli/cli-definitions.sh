@@ -26,7 +26,7 @@ elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
     ./gamifyed-cli-rpi
 
 
-
+fi
 
 #after updating the CLI Definitions from Github
 
