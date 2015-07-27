@@ -2,8 +2,8 @@
 #### This will get thinned out a lot when we push to production
 
 ***
-
-> TO BEGIN
+# TO BEGIN
+***
 
 1. cd into gamifyed-cli and run: chmod u+x cli-definitions.sh
 2. alias gamifyed="/gamifyed/gamifyed-cli/cli-definitions.sh" - be sure to use your absolute path
