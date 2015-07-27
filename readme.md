@@ -12,4 +12,4 @@
 #### These actions will tell your terminal to run the gamifyed C++ main entry program, which will trigger the workflow-router, which triggers a bunch of system checks, updates the users latest state, looks at the connection, populates some variables then runs game, taking you to where you left off. 
 
 
-[/gamifyed-cli/] /gamifyed-cli/
+[/gamifyed-cli/](/gamifyed-cli/)
