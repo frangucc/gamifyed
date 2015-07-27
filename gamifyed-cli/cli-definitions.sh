@@ -18,7 +18,7 @@
 #restart the terminal in the correct directory and fire up the bash script every time. Use crash first methodology when making this all. Until Git hub and the latest definitions are up to date, restart the gamifyed app - also, some sort of internet detection or ping, network status would be good during this phase. Perhapse a response from a What's my speed type of API. Start labelling commands using (#internet-status) etc. 
 
 
-./Gamifyed-CLI
+/gamifyed/gamifyed-cli/gamifyed-cli-mac
 
 
 
