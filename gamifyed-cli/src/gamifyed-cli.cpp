@@ -34,11 +34,18 @@ void clear_array(char array[]){
 	return;
 }
 
+
+void qt_app(){
+	system("./interactive-voxel-painter &");
+}
+
+
 int main(int argc, char* argv[]) {
 	sqlite3 *db;
 	char *zErrMsg=0;
 	int rc;
-	char name_in[16];
+	char user_in[16];
+	char user_name[16];
 	char buffer[256];
 	const char *sql_get_col = "SELECT %s FROM %s";	//sprintf(buf, sql_get_col, col, table)
 	const char *sql_insert_value="INSERT INTO %s(%s) VALUES('%s');"; //sprintf(buf, sql_insert_value, table, col, value)
@@ -51,15 +58,21 @@ int main(int argc, char* argv[]) {
 	clear_array(buffer);
 	if (name_in_db == 0){
 		printf("What is your name? ");
-		scanf("%s",name_in);
-		sprintf(buffer, sql_insert_value, "USERS", "NAME", name_in);
+		scanf("%s",user_in);
+		char user_name[16] = {*user_in};
+		clear_array(user_in);
+		sprintf(buffer, sql_insert_value, "USERS", "NAME", user_name);
 		rc = sqlite3_exec(db, buffer, 0, 0, 0);
 		clear_array(buffer);
-		printf("Welcome to Gamifyed, %s!\n", name_in);
+		printf("Welcome to Gamifyed, %s!\n", user_name);
 	}
 	sqlite3_close(db);
-	system("./interactive-voxel-painter");
+	qt_app();
+	printf("What would you like to do next? ");
+	scanf("%s", user_in);
+	printf("Goodbye, %s!", user_name);
 	return 0;
 }
+
 
 
