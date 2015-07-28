@@ -55,9 +55,7 @@ int main(int argc, char* argv[]) {
 	clear_array(buffer);
 	if (name_in_db == 0){
 		printf("What is your name? ");
-		scanf("%s",user_in);
-		char user_name[16] = {*user_in};
-		clear_array(user_in);
+		scanf("%s",user_name);
 		sprintf(buffer, sql_insert_value, "USERS", "NAME", user_name);
 		rc = sqlite3_exec(db, buffer, 0, 0, 0);
 		clear_array(buffer);
@@ -73,11 +71,9 @@ int main(int argc, char* argv[]) {
 		execl("interactive-voxel-painter",".", (char*) NULL);
 		exit(1);
 	}
-	else if (pid > 0){
-		printf("What would you like to do next? ");
-		scanf("%s", user_in);
-		printf("Goodbye, %s!", user_name);
-	}
+	printf("What would you like to do next? ");
+	scanf("%s", user_in);
+	printf("Goodbye, %s!", user_name);
 	kill(pid,15);
 	return 0;
 }
