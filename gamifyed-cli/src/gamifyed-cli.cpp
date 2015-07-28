@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <sqlite3.h>
-#include <string>
+#include <unistd.h>
 
 using namespace std;
 
@@ -35,12 +35,8 @@ void clear_array(char array[]){
 }
 
 
-void qt_app(){
-	system("./interactive-voxel-painter &");
-}
-
-
 int main(int argc, char* argv[]) {
+	pid_t pid;
 	sqlite3 *db;
 	char *zErrMsg=0;
 	int rc;
@@ -67,10 +63,15 @@ int main(int argc, char* argv[]) {
 		printf("Welcome to Gamifyed, %s!\n", user_name);
 	}
 	sqlite3_close(db);
-	qt_app();
-	printf("What would you like to do next? ");
-	scanf("%s", user_in);
-	printf("Goodbye, %s!", user_name);
+	pid = fork();
+	if (pid == 0){
+		system("./interactive-voxel-painter");
+	}
+	else if (pid > 0){
+		printf("What would you like to do next? ");
+		scanf("%s", user_in);
+		printf("Goodbye, %s!", user_name);
+	}
 	return 0;
 }
 
