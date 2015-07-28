@@ -7,6 +7,7 @@
 //============================================================================
 
 #include <stdio.h>
+#include <signal.h>
 #include <algorithm>
 #include <sqlite3.h>
 #include <unistd.h>
@@ -16,14 +17,12 @@ using namespace std;
 int name_in_db = 0;
 
 static int callback_check_name(void *NotUsed, int argc, char **argv, char **Col){
-   int i;
-   for(i=0; i<argc; i++){
+   for(int i=0; i<argc; i++){
       if (argv[i]){
     	  printf("Welcome back, %s!\n", argv[i]);
     	  name_in_db = 1;
       }
    }
-   printf("\n");
    return 0;
 }
 
@@ -37,7 +36,9 @@ void clear_array(char array[]){
 
 int main(int argc, char* argv[]) {
 	pid_t pid;
+	FILE* output;
 	sqlite3 *db;
+	int pipefd[2];
 	char *zErrMsg=0;
 	int rc;
 	char user_in[16];
@@ -63,15 +64,21 @@ int main(int argc, char* argv[]) {
 		printf("Welcome to Gamifyed, %s!\n", user_name);
 	}
 	sqlite3_close(db);
+	pipe(pipefd);
 	pid = fork();
 	if (pid == 0){
-		system("./interactive-voxel-painter");
+		dup2(pipefd[0], STDIN_FILENO);
+		dup2(pipefd[1], STDOUT_FILENO);
+		dup2(pipefd[1], STDERR_FILENO);
+		execl("interactive-voxel-painter",".", (char*) NULL);
+		exit(1);
 	}
 	else if (pid > 0){
 		printf("What would you like to do next? ");
 		scanf("%s", user_in);
 		printf("Goodbye, %s!", user_name);
 	}
+	kill(pid,15);
 	return 0;
 }
 
