@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <sqlite3.h>
+#include <string>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ int main(int argc, char* argv[]) {
 	sqlite3 *db;
 	char *zErrMsg=0;
 	int rc;
-	const char *name_in;
+	char name_in[16];
 	char buffer[256];
 	const char *sql_get_col = "SELECT %s FROM %s";	//sprintf(buf, sql_get_col, col, table)
 	const char *sql_insert_value="INSERT INTO %s(%s) VALUES('%s');"; //sprintf(buf, sql_insert_value, table, col, value)
@@ -54,7 +55,7 @@ int main(int argc, char* argv[]) {
 		sprintf(buffer, sql_insert_value, "USERS", "NAME", name_in);
 		rc = sqlite3_exec(db, buffer, 0, 0, 0);
 		clear_array(buffer);
-		printf("Welcome to Gamifyed, %s!", name_in);
+		printf("Welcome to Gamifyed, %s!\n", name_in);
 	}
 	sqlite3_close(db);
 	return 0;
