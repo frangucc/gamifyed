@@ -7,21 +7,15 @@
 //============================================================================
 
 #include <stdio.h>
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
+#include <algorithm>
 #include <sqlite3.h>
 
 using namespace std;
 
 int name_in_db = 0;
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName){
+static int callback_check_name(void *NotUsed, int argc, char **argv, char **Col){
    int i;
-   if (argc == 0){
-	   name_in_db = 0;
-	   return 0;
-   }
    for(i=0; i<argc; i++){
       if (argv[i]){
     	  printf("Welcome back, %s!\n", argv[i]);
@@ -32,37 +26,38 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName){
    return 0;
 }
 
+void clear_array(char array[]){
+	char *begin = array;
+	char *end = begin + sizeof(array);
+	std::fill(begin, end, 0);
+	return;
+}
+
 int main(int argc, char* argv[]) {
 	sqlite3 *db;
 	char *zErrMsg=0;
 	int rc;
-	char *sql;
-	char* name_in;
-	char *ErrComp = "no such table: USERS";
+	const char *name_in;
+	char buffer[256];
+	const char *sql_get_col = "SELECT %s FROM %s";	//sprintf(buf, sql_get_col, col, table)
+	const char *sql_insert_value="INSERT INTO %s(%s) VALUES('%s');"; //sprintf(buf, sql_insert_value, table, col, value)
+	//const char *sql_drop_table;
 
-	rc=sqlite3_open("test.db", &db);
+	rc = sqlite3_open("test.db", &db);
 
-	sql="SELECT NAME FROM USERS";
-
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	if( rc != SQLITE_OK ){
-	if (*zErrMsg == *ErrComp)
-			{
-				sql="CREATE TABLE USERS("
-						"NAME PRIMARY TEXT NOT NULL"
-						")";
-				rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-
-			}
-	}
+	sprintf(buffer, sql_get_col, "NAME", "USERS");
+	rc = sqlite3_exec(db, buffer, callback_check_name, 0, &zErrMsg);
+	clear_array(buffer);
 	if (name_in_db == 0){
 		printf("What is your name? ");
-		name_in = "Rushi";
-		sprintf(sql, "INSERT INTO USERS (NAME)"
-				"VALUES (%s)",name_in);
-		rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-		printf("Welcome, %s!\n", name_in);
+		scanf("%s",name_in);
+		sprintf(buffer, sql_insert_value, "USERS", "NAME", name_in);
+		rc = sqlite3_exec(db, buffer, 0, 0, 0);
+		clear_array(buffer);
+		printf("Welcome to Gamifyed, %s!", name_in);
 	}
 	sqlite3_close(db);
 	return 0;
 }
+
+
