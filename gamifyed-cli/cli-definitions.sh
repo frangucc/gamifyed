@@ -20,7 +20,7 @@
 path=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    $path/gamifyed-cli-linux-pc
+    sudo $path/gamifyed-cli-linux-pc
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     $path/gamifyed-cli-mac
 elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then

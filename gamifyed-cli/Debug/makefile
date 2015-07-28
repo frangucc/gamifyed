@@ -38,19 +38,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: Gamifyed-CLI
+all: gamifyed-cli
 
 # Tool invocations
-Gamifyed-CLI: $(OBJS) $(USER_OBJS)
+gamifyed-cli: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "Gamifyed-CLI" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "gamifyed-cli" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) Gamifyed-CLI
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) gamifyed-cli
 	-@echo ' '
 
 .PHONY: all clean dependents
