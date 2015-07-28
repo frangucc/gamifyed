@@ -58,6 +58,7 @@ int main(int argc, char* argv[]) {
 		printf("Welcome to Gamifyed, %s!\n", name_in);
 	}
 	sqlite3_close(db);
+	system("./interactive-voxel-painter");
 	return 0;
 }
 
