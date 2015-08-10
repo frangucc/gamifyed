@@ -14,28 +14,44 @@
 
 namespace std {
 
+#pragma db object
 class User {
 public:
-	User (  string first,
+	User (  string user,
+			string first,
 			string last,
 			string email,
 			unsigned short age);
 	virtual ~User();
 
-	string first() const;
+	string user() const{
+		return user_;
+	}
 
-	string last() const;
+	string first() const{
+		return first_;
+	}
 
-	string email() const;
+	string last() const{
+		return last_;
+	}
 
-	unsigned short age() const;
+	string email() const{
+		return email_;
+	}
+
+	unsigned short age() const{
+		return age_;
+	}
 
 private:
 	User () {}
 
 	friend class odb::access;
 
+	#pragma db id auto
 	unsigned long id_;
+	string user_;
 	string first_;
 	string last_;
 	string email_;

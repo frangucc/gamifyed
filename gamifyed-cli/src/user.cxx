@@ -9,7 +9,8 @@
 
 namespace std {
 
-User::User(string First, string Last, string Email, unsigned short int Age) {
+User::User(string user, string First, string Last, string Email, unsigned short int Age) {
+	user_ = user;
 	first_ = First;
 	last_ = Last;
 	email_ = Email;
