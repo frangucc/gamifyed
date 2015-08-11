@@ -66,7 +66,7 @@ bool init_check_database(){
 				result::iterator i (r->begin());
 				User* user = new User(i->user(), i->first(), i->last(), i->email(), i->age());
 				t.commit();
-				cout << "Welcome back, " << user->first() << "!" << endl;
+				cout << endl << "Welcome back, " << user->first() << "! Now we will check for updates." << endl << endl;
 			}
 		}
 
