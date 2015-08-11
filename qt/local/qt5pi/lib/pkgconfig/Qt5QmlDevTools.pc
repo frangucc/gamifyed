@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 QmlDevTools
+Description: Qt QmlDevTools module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5QmlDevTools 
+Libs.private: -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Bootstrap -lpthread   
+Cflags: -I${includedir}/QtQmlDevTools -I${includedir}
+Requires: Qt5Bootstrap
+

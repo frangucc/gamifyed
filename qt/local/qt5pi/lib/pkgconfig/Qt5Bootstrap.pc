@@ -1,0 +1,13 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 Bootstrap
+Description: Qt Bootstrap module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5Bootstrap 
+Libs.private: -lpthread   
+Cflags: -I${includedir}/QtBootstrap -I${includedir}
+

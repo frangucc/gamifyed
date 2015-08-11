@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 Gui
+Description: Qt Gui module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5Gui 
+Libs.private: -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/usr/local/qt5pi/lib -lQt5Core -lpthread -lpng -lqtharfbuzzng -lz -lGLESv2  
+Cflags: -I${includedir}/QtGui -I${includedir}
+Requires: Qt5Core
+
