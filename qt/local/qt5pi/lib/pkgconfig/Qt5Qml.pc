@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 Qml
+Description: Qt Qml module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5Qml 
+Libs.private: -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Network -lQt5Core -lpthread -lrt  
+Cflags: -I${includedir}/QtQml -I${includedir}
+Requires: Qt5Core Qt5Network
+

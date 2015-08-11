@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 3DQuickRenderer
+Description: Qt 3DQuickRenderer module
+Version: 5.5.0
+Libs: -L${libdir} -lQt53DQuickRenderer 
+Libs.private: -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/usr/local/qt5pi/lib -lQt53DRenderer -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt53DQuick -lQt53DCore -lQt5OpenGLExtensions -lGLESv2 -lQt5Gui -lQt5Qml -lQt5Network -lQt5Core -lpthread -lGLESv2  
+Cflags: -I${includedir}/Qt3DQuickRenderer -I${includedir}
+Requires: Qt5Core Qt5Gui Qt5Qml Qt53DCore Qt53DRenderer Qt53DQuick
+
