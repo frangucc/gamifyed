@@ -10,50 +10,58 @@ Qt is a cross-platform application framework that can be used to design sleek UI
 
 ##Building Qt for the Pi
 1. Create a directory named 'opt' in the home folder and copy over the gcc-4.7-linaro-rpi-gnueabihf folder.
-```shell
-mkdir ~/opt/
-cp -rf /path_to_this_repo/gcc-4.7-linaro-rpi-gnueabihf/ ~/opt/
-cd ~/opt/
-```
+  ```shell  
+  
+  mkdir ~/opt/
+  cp -rf /path_to_this_repo/gcc-4.7-linaro-rpi-gnueabihf/ ~/opt/    
+  cd ~/opt/    
+  ```  
 2. If you don't have an existing Raspbian install, skip to step 4. Insert your SD card and find the address of the sd card. (Usually 'sdb')
-```shell
-lsusb
-```
+  ```shell
+  
+  lsusb 
+  ```
 3. Make a copy of your SD card. (This step takes a few minutes)
-```shell
-sudo dd bs=4M if=/dev/sd_card_address of=path_to_img_file.img;sync
-```
+  ```shell
+  
+  sudo dd bs=4M if=/dev/sd_card_address of=path_to_img_file.img;sync
+  ```
 4. Mount your raspbian image.
-```shell
-sudo mount -o loop,offset=62914560 path_to_img_file.img /mnt/rasp-pi-rootfs
-```
+  ```shell
+  
+  sudo mount -o loop,offset=62914560 path_to_img_file.img /mnt/rasp-pi-rootfs
+  ```
 5. Clone and init the Qt5 repo.
-```shell
-git clone git://code.qt.io/qt/qt5.git
-cd qt5
-./init-repository
-```
+  ```shell
+  
+  git clone git://code.qt.io/qt/qt5.git
+  cd qt5
+  ./init-repository
+  ```
 6. Enter the qtbase folder and install Qt.
-```shell
-cd qtbase
-./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=~/opt/gcc-4.7-linaro-rpi-gnueabihf/bin/arm-linux-gnueabihf- -sysroot /mnt/rasp-pi-rootfs -opensource -confirm-license -optimized-qmake -reduce-exports -release -make libs -prefix /usr/local/qt5pi -hostprefix /usr/local/qt5pi
-make -j 4
-sudo make install```
+  ```shell
+  cd qtbase
+  ./configure -opengl es2 -device linux-rasp-pi-g++ -device-option     CROSS_COMPILE=~/opt/gcc-4.7-linaro-rpi-gnueabihf/bin/arm-linux-gnueabihf- -sysroot /mnt/rasp-pi-rootfs -opensource -confirm-license -optimized-qmake -reduce-exports -release -make libs -prefix /usr/local/qt5pi -hostprefix /usr/local/qt5pi
+  make -j 4
+  sudo make install
+  ```
 *NOTE: The /mnt/rasp-pi-rootfs/usr/local/ folder can now replace the local/ folder in this repository.*  
 
 7. **OPTIONAL:** In order to compile other modules to expand functionality, you must compile them seperately. The following order is suggested to avoid dependency errors: qtimageformats, qtsvg, qtjsbackend, qtscript, qtxmlpatterns, qtdeclarative, qtsensors, qt3d, qtgraphicaleffects, qtjsondb, qtlocation, qtdocgallery.
-```shell
-cd <qt-module>
-sudo path_to_local_folder/qt5pi/bin/qmake .
-sudo make -j 4
-sudo make install
-```
+  ```shell
+  
+  cd <qt-module>
+  sudo path_to_local_folder/qt5pi/bin/qmake .
+  sudo make -j 4
+  sudo make install
+  ```
 8. Write the image back to the SD Card.
-```shell
-cd ~/opt/
-sudo umount /mnt/rasp-pi-rootfs
-sudo dd bs=4M if=path_to_img_file.img of/dev/sd_card_address; sync
-```
+ ```shell
+ 
+  cd ~/opt/
+  sudo umount /mnt/rasp-pi-rootfs
+  sudo dd bs=4M if=path_to_img_file.img of/dev/sd_card_address; sync
+  ```
 
 
 
@@ -63,8 +71,10 @@ sudo dd bs=4M if=path_to_img_file.img of/dev/sd_card_address; sync
 Follow these steps in order to setup a developmental environment on your local machine for the Raspberry Pi.
 
 1. Install QtCreator.
-```shell
-sudo apt-get install QtCreator```
+  ```shell
+
+  sudo apt-get install QtCreator
+  ```
 2. Open QtCreator as superuser.
 3. In the top menu, click on 'Tools'.
 4. Click on 'Options'.
@@ -105,7 +115,8 @@ sudo apt-get install QtCreator```
 12. At this point, you should be able to select one of the example projects and deploy it to the Raspberry Pi.
 13. To run an application, in Qt Creator, click the green Run button. This will build and deploy the application to the Pi. All output from the application will be on the console in Qt Creator.
 14. After the compilation process, you can transfer the binary executable over to the Pi manually along with any resources and run directly on the Pi without the development machine.
-```shell
-cd /folder_where_binary_is
-./binary_executable
-```
+  ```shell
+
+  cd /folder_where_binary_is
+  ./binary_executable
+  ```
