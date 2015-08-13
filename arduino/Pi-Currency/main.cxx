@@ -20,7 +20,9 @@
 using namespace std;
 using namespace odb::core;
 
-void output_persist_currency(unsigned long curr){
+typedef unsigned char uchar;
+
+void output_persist_currency(float curr){
 	unsigned long id;
 	std::auto_ptr<database> db (new odb::sqlite::database ("user.db", SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE));	//creates or opens database
 
@@ -46,10 +48,10 @@ void output_persist_currency(unsigned long curr){
 			}
 			else{
 				result::iterator i (r->begin());
-				unsigned long old_curr;
+				float old_curr;
 				old_curr = i->currency();
 				t.commit();
-				unsigned long new_curr = old_curr + curr;
+				float new_curr = old_curr + curr;
 				Database* currency = new Database("U1", new_curr);
 				cout << "You had " << old_curr << "dollars. You just earned " << curr << "dollars!" << endl;
 				cout << "Now you have " << new_curr << "dollars!" << endl;
@@ -73,12 +75,23 @@ void output_persist_currency(unsigned long curr){
 		}
 }
 
+float bytesToFloat(uchar b0, uchar b1, uchar b2, uchar b3)
+{
+    uchar byte_array[] = { b3, b2, b1, b0 };
+    float result;
+    std::copy(reinterpret_cast<const char*>(&byte_array[0]),
+              reinterpret_cast<const char*>(&byte_array[4]),
+              reinterpret_cast<char*>(&result));
+    return result;
+}
+
 unsigned long retrieve_currency(int ard){
-	int curr_high, curr_low;
-	curr_high = wiringPiI2CRead(ard);
-	curr_low = wiringPiI2CRead(ard);
-	curr_high = curr_high << 8;
-	unsigned long curr = curr_high + curr_low;
+	uchar curr_1, curr_2, curr_3, curr_4;
+	curr_1 = wiringPiI2CRead(ard);
+	curr_2 = wiringPiI2CRead(ard);
+	curr_3 = wiringPiI2CRead(ard);
+	curr_4 = wiringPiI2CRead(ard);
+	float curr = bytesToFloat(curr_1, curr_2, curr_3, curr_4);
 	output_persist_currency(curr);
 }
 

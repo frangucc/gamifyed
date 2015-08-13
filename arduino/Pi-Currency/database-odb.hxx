@@ -120,9 +120,9 @@ namespace odb
     typedef
     sqlite::query_column<
       sqlite::value_traits<
-        long unsigned int,
-        sqlite::id_integer >::query_type,
-      sqlite::id_integer >
+        float,
+        sqlite::id_real >::query_type,
+      sqlite::id_real >
     currency_type_;
 
     static const currency_type_ currency;
@@ -177,7 +177,7 @@ namespace odb
 
       // currency_
       //
-      long long currency_value;
+      double currency_value;
       bool currency_null;
 
       std::size_t version;

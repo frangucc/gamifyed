@@ -8,7 +8,7 @@
 #include "database.hxx"
 using namespace std;
 
-Database::Database(string User, unsigned long Currency) {
+Database::Database(string User, float Currency) {
 	user_ = User;
 	currency_ = Currency;
 

@@ -141,7 +141,7 @@ namespace odb
 
     // currency_
     //
-    b[n].type = sqlite::bind::integer;
+    b[n].type = sqlite::bind::real;
     b[n].buffer = &i.currency_value;
     b[n].is_null = &i.currency_null;
     n++;
@@ -208,13 +208,13 @@ namespace odb
     // currency_
     //
     {
-      long unsigned int const& v =
+      float const& v =
         o.currency_;
 
-      bool is_null (false);
+      bool is_null (true);
       sqlite::value_traits<
-          long unsigned int,
-          sqlite::id_integer >::set_image (
+          float,
+          sqlite::id_real >::set_image (
         i.currency_value,
         is_null,
         v);
@@ -265,12 +265,12 @@ namespace odb
     // currency_
     //
     {
-      long unsigned int& v =
+      float& v =
         o.currency_;
 
       sqlite::value_traits<
-          long unsigned int,
-          sqlite::id_integer >::set_value (
+          float,
+          sqlite::id_real >::set_value (
         v,
         i.currency_value,
         i.currency_null);
@@ -755,7 +755,7 @@ namespace odb
           db.execute ("CREATE TABLE \"Database\" (\n"
                       "  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
                       "  \"user\" TEXT NOT NULL,\n"
-                      "  \"currency\" INTEGER NOT NULL)");
+                      "  \"currency\" REAL NULL)");
           return false;
         }
       }

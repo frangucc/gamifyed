@@ -17,13 +17,13 @@ namespace std{
 #pragma db object
 class Database {
 public:
-	Database(string user, unsigned long currency);
+	Database(string user, float currency);
 
 	string user() const{
 		return user_;
 	}
 
-	unsigned long currency() const{
+	float currency() const{
 		return currency_;
 	}
 	virtual ~Database();
@@ -34,7 +34,7 @@ private:
 	#pragma db id auto
 	unsigned long id_;
 	string user_;
-	unsigned long currency_;
+	float currency_;
 };
 }
 
