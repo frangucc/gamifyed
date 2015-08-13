@@ -1,0 +1,9 @@
+{
+  "firebase": "tapcentive",
+  "public": "www",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

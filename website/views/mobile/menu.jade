@@ -1,0 +1,24 @@
+style.
+  .bar-stable {
+  background: transparent !important
+  }
+ion-side-menus(enable-menu-with-back-views='false')
+  ion-side-menu-content
+    ion-nav-bar.bar-stable
+      ion-nav-buttons(side='left')
+        button.button.button-icon.button-clear.ion-navicon(menu-toggle='left') 
+    ion-nav-view(name='menuContent')
+
+  ion-side-menu(side='left')
+    ion-header-bar.bar-stable
+      h1(style='font-weight:600').title Alcura
+
+    ion-content
+      ul.list
+        // Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links
+        a.item(href='#/home', menu-close='') Home        
+        a.item(href='#/technology', menu-close='') Technology
+        a.item(href='#/news', menu-close='') CBD Extract
+        a.item(href='#/products', menu-close='') Company
+        a.item(href='#/tapcentive-beacon-nfc-cloud-manager', menu-close='') Recycle
+        a.item(href='#/contact', menu-close='') Contact

@@ -1,0 +1,36 @@
+a(name='top')
+
+section.homepage-hero(style='background-color:#fff;margin:-80px 0 60px 0;padding:0px 0 0 0;')
+  .row
+    .large-12.text-left(style='margin-left:5%;padding:50px 0 60px 0px;')
+      
+section#main-content(style='background-color:#f0f0f0;margin:-60px 0 0 0;padding:40px 0 40px 0;background:url("/img/map.jpg") no-repeat;background-size:cover;min-height:400px;')
+  .row.centered-text
+    .large-12.columns.centered-text(style='margin:50px 0 0 40px;')
+    .large-7.columns.text-left(style='margin-top:-40px;')
+section#form-contact
+  section#form-contact
+    .row
+      .medium-6.column(style='text-align:left;')
+        h2  Contact Alcura
+    .row
+      .medium-6.column
+        br
+        br
+        // - this is where we start responsive, shared content
+        ng-include(src="'shared/contact.html'")
+      .medium-4.column(style='text-align:left;')
+        br
+        br
+        p 
+          strong Headquarters
+        p Telephone: 312-462-4092
+        p Email: info@vapeaclura.com
+        p Address: 955 W. Lake St.
+        p Chicago IL, 60607
+    br
+    br
+    br
+    br
+    br
+    br
