@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 QuickParticles
+Description: Qt QuickParticles module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5QuickParticles 
+Libs.private: -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/usr/local/qt5pi/lib -lQt5Quick -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Qml -lQt5Gui -lQt5Network -lQt5Core -lpthread -lGLESv2  
+Cflags: -I${includedir}/QtQuickParticles -I${includedir}
+Requires: Qt5Core Qt5Gui Qt5Qml Qt5Quick
+

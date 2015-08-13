@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: Adafruit-ILI9341
+Version: 1.5.0
+Summary: Library to control an ILI9341 TFT LCD display.
+Home-page: https://github.com/adafruit/Adafruit_Python_ILI9341/
+Author: Tony DiCola
+Author-email: tdicola@adafruit.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN

@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 WebKit
+Description: Qt WebKit module
+Version: 5.5.1
+Libs: -L${libdir} -lQt5WebKit 
+Libs.private: -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Gui -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Network -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Core -lpthread -lpthread -Wl,-whole-archive -lWebKit1 -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/WebKit/ -Wl,-whole-archive -lWebKit2 -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/WebKit2/ -lrt -Wl,-whole-archive -lWebCore -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/WebCore/ -lz -lpng -Wl,-whole-archive -lANGLE -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/ThirdParty/ANGLE/ -Wl,-whole-archive -lleveldb -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/ThirdParty/leveldb/ -Wl,-whole-archive -lJavaScriptCore -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/JavaScriptCore/ -Wl,-whole-archive -lWTF -Wl,-no-whole-archive -L/home/rushi/opt/qt5/qtwebkit/Source/WTF/ -lEGL -lGLESv2 -L/mnt/rasp-pi-rootfs/usr/lib/arm-linux-gnueabihf -lsqlite3 -licui18n -licuuc -licudata -lQt5Sensors -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Positioning -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Quick -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Qml -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Gui -lQt5Network -lQt5Core -lpthread -lQt5Qml -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Network -lQt5Core -lpthread -lQt5Network -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Gui -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Sql -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Core -lpthread -lQt5Core -lpthread -lGLESv2  
+Cflags: -I${includedir}/QtWebKit -I${includedir}
+Requires: Qt5Core Qt5Gui Qt5Network
+

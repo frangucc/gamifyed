@@ -1,0 +1,14 @@
+prefix=/mnt/rasp-pi-rootfs/usr/local/qt5pi
+exec_prefix=${prefix}
+libdir=/usr/local/qt5pi/lib
+includedir=/usr/local/qt5pi/include
+
+
+Name: Qt5 Svg
+Description: Qt Svg module
+Version: 5.5.0
+Libs: -L${libdir} -lQt5Svg 
+Libs.private: -L/mnt/rasp-pi-rootfs/opt/vc/lib -L/mnt/rasp-pi-rootfs/usr/local/qt5pi/lib -lQt5Widgets -lQt5Gui -lQt5Core -lpthread -lz -lGLESv2  
+Cflags: -I${includedir}/QtSvg -I${includedir}
+Requires: Qt5Core Qt5Gui Qt5Widgets
+
