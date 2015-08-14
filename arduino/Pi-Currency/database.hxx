@@ -27,6 +27,8 @@ public:
 		return currency_;
 	}
 	virtual ~Database();
+
+	float currency_;
 private:
 	Database() {}
 	friend class odb::access;
@@ -34,7 +36,6 @@ private:
 	#pragma db id auto
 	unsigned long id_;
 	string user_;
-	float currency_;
 };
 }
 

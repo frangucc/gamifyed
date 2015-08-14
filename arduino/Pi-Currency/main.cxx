@@ -21,8 +21,10 @@ using namespace std;
 using namespace odb::core;
 
 typedef unsigned char uchar;
+Database currency("U1", 0.0);
 
-void output_persist_currency(float curr, unsigned long id){
+void output_persist_currency(float curr){
+	unsigned long id;
 	std::auto_ptr<database> db (new odb::sqlite::database ("user.db", SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE));	//creates or opens database
 
 	{
@@ -39,7 +41,7 @@ void output_persist_currency(float curr, unsigned long id){
 			if (r->empty()){
 				t.commit();
 				cout << "You had no currency. You just earned " << curr << " dollars!" << endl;
-				Database* currency = new Database("U1", curr);
+				currency.currency_ = curr;
 				transaction t (db->begin());
 				id = db->persist (currency);
 				t.commit();
@@ -50,15 +52,12 @@ void output_persist_currency(float curr, unsigned long id){
 				old_curr = i->currency();
 				t.commit();
 				float new_curr = old_curr + curr;
-				Database* currency = new Database("U1", new_curr);
+				currency.currency_ = new_curr;
 				cout << "You had " << old_curr << "dollars. You just earned " << curr << " dollars!" << endl;
 				cout << "Now you have " << new_curr << " dollars!" << endl;
 				transaction t (db->begin());
-				db->erase<Database> (id);
+				db->update(currency);
 				t.commit();
-				id = db->persist(currency);
-				t.commit();
-				delete currency;
 			}
 		}
 	}
@@ -68,7 +67,7 @@ void output_persist_currency(float curr, unsigned long id){
 				transaction t (db->begin());
 				schema_catalog::create_schema (*db);
 				t.commit();
-				output_persist_currency(curr, id);
+				output_persist_currency(curr);
 				return;
 			}
 			return;
@@ -88,18 +87,17 @@ float bytesToFloat(uchar b0, uchar b1, uchar b2, uchar b3)
     return A.f;
 }
 
-unsigned long retrieve_currency(int ard, unsigned long id){
+unsigned long retrieve_currency(int ard){
 	uchar curr_1, curr_2, curr_3, curr_4;
 	curr_1 = wiringPiI2CRead(ard);
 	curr_2 = wiringPiI2CRead(ard);
 	curr_3 = wiringPiI2CRead(ard);
 	curr_4 = wiringPiI2CRead(ard);
 	float curr = bytesToFloat(curr_1, curr_2, curr_3, curr_4);
-	output_persist_currency(curr, id);
+	output_persist_currency(curr);
 }
 
 int main(int argc, char* argv[]){
-	unsigned long id;
 	int ard;
 	if (wiringPiSetup() == -1){
 		cout << "Error setting up wiringPi." << endl;
@@ -108,7 +106,7 @@ int main(int argc, char* argv[]){
 		cout << "Error initializing I2C." << endl;
 	}
 	while (true){
-		retrieve_currency(ard, id);
+		retrieve_currency(ard);
 		usleep(10000000);
 	}
 }

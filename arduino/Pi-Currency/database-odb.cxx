@@ -88,21 +88,21 @@ namespace odb
 
     bool grew (false);
 
-    // id_
+    // currency_
     //
     t[0UL] = false;
 
+    // id_
+    //
+    t[1UL] = false;
+
     // user_
     //
-    if (t[1UL])
+    if (t[2UL])
     {
       i.user_value.capacity (i.user_size);
       grew = true;
     }
-
-    // currency_
-    //
-    t[2UL] = false;
 
     return grew;
   }
@@ -117,6 +117,13 @@ namespace odb
     using namespace sqlite;
 
     std::size_t n (0);
+
+    // currency_
+    //
+    b[n].type = sqlite::bind::real;
+    b[n].buffer = &i.currency_value;
+    b[n].is_null = &i.currency_null;
+    n++;
 
     // id_
     //
@@ -137,13 +144,6 @@ namespace odb
     b[n].size = &i.user_size;
     b[n].capacity = i.user_value.capacity ();
     b[n].is_null = &i.user_null;
-    n++;
-
-    // currency_
-    //
-    b[n].type = sqlite::bind::real;
-    b[n].buffer = &i.currency_value;
-    b[n].is_null = &i.currency_null;
     n++;
   }
 
@@ -168,6 +168,22 @@ namespace odb
     using namespace sqlite;
 
     bool grew (false);
+
+    // currency_
+    //
+    {
+      float const& v =
+        o.currency_;
+
+      bool is_null (true);
+      sqlite::value_traits<
+          float,
+          sqlite::id_real >::set_image (
+        i.currency_value,
+        is_null,
+        v);
+      i.currency_null = is_null;
+    }
 
     // id_
     //
@@ -205,22 +221,6 @@ namespace odb
       grew = grew || (cap != i.user_value.capacity ());
     }
 
-    // currency_
-    //
-    {
-      float const& v =
-        o.currency_;
-
-      bool is_null (true);
-      sqlite::value_traits<
-          float,
-          sqlite::id_real >::set_image (
-        i.currency_value,
-        is_null,
-        v);
-      i.currency_null = is_null;
-    }
-
     return grew;
   }
 
@@ -232,6 +232,20 @@ namespace odb
     ODB_POTENTIALLY_UNUSED (o);
     ODB_POTENTIALLY_UNUSED (i);
     ODB_POTENTIALLY_UNUSED (db);
+
+    // currency_
+    //
+    {
+      float& v =
+        o.currency_;
+
+      sqlite::value_traits<
+          float,
+          sqlite::id_real >::set_value (
+        v,
+        i.currency_value,
+        i.currency_null);
+    }
 
     // id_
     //
@@ -261,20 +275,6 @@ namespace odb
         i.user_size,
         i.user_null);
     }
-
-    // currency_
-    //
-    {
-      float& v =
-        o.currency_;
-
-      sqlite::value_traits<
-          float,
-          sqlite::id_real >::set_value (
-        v,
-        i.currency_value,
-        i.currency_null);
-    }
   }
 
   void access::object_traits_impl< ::std::Database, id_sqlite >::
@@ -294,25 +294,25 @@ namespace odb
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::persist_statement[] =
   "INSERT INTO \"Database\" "
-  "(\"id\", "
-  "\"user\", "
-  "\"currency\") "
+  "(\"currency\", "
+  "\"id\", "
+  "\"user\") "
   "VALUES "
   "(?, ?, ?)";
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::find_statement[] =
   "SELECT "
+  "\"Database\".\"currency\", "
   "\"Database\".\"id\", "
-  "\"Database\".\"user\", "
-  "\"Database\".\"currency\" "
+  "\"Database\".\"user\" "
   "FROM \"Database\" "
   "WHERE \"Database\".\"id\"=?";
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::update_statement[] =
   "UPDATE \"Database\" "
   "SET "
-  "\"user\"=?, "
-  "\"currency\"=? "
+  "\"currency\"=?, "
+  "\"user\"=? "
   "WHERE \"id\"=?";
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::erase_statement[] =
@@ -321,9 +321,9 @@ namespace odb
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::query_statement[] =
   "SELECT "
+  "\"Database\".\"currency\", "
   "\"Database\".\"id\", "
-  "\"Database\".\"user\", "
-  "\"Database\".\"currency\" "
+  "\"Database\".\"user\" "
   "FROM \"Database\"";
 
   const char access::object_traits_impl< ::std::Database, id_sqlite >::erase_query_statement[] =
@@ -753,9 +753,9 @@ namespace odb
         case 1:
         {
           db.execute ("CREATE TABLE \"Database\" (\n"
+                      "  \"currency\" REAL NULL,\n"
                       "  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
-                      "  \"user\" TEXT NOT NULL,\n"
-                      "  \"currency\" REAL NULL)");
+                      "  \"user\" TEXT NOT NULL)");
           return false;
         }
       }

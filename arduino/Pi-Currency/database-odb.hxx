@@ -91,6 +91,18 @@ namespace odb
   template <typename A>
   struct query_columns< ::std::Database, id_sqlite, A >
   {
+    // currency
+    //
+    typedef
+    sqlite::query_column<
+      sqlite::value_traits<
+        float,
+        sqlite::id_real >::query_type,
+      sqlite::id_real >
+    currency_type_;
+
+    static const currency_type_ currency;
+
     // id
     //
     typedef
@@ -114,19 +126,12 @@ namespace odb
     user_type_;
 
     static const user_type_ user;
-
-    // currency
-    //
-    typedef
-    sqlite::query_column<
-      sqlite::value_traits<
-        float,
-        sqlite::id_real >::query_type,
-      sqlite::id_real >
-    currency_type_;
-
-    static const currency_type_ currency;
   };
+
+  template <typename A>
+  const typename query_columns< ::std::Database, id_sqlite, A >::currency_type_
+  query_columns< ::std::Database, id_sqlite, A >::
+  currency (A::table_name, "\"currency\"", 0);
 
   template <typename A>
   const typename query_columns< ::std::Database, id_sqlite, A >::id_type_
@@ -137,11 +142,6 @@ namespace odb
   const typename query_columns< ::std::Database, id_sqlite, A >::user_type_
   query_columns< ::std::Database, id_sqlite, A >::
   user (A::table_name, "\"user\"", 0);
-
-  template <typename A>
-  const typename query_columns< ::std::Database, id_sqlite, A >::currency_type_
-  query_columns< ::std::Database, id_sqlite, A >::
-  currency (A::table_name, "\"currency\"", 0);
 
   template <typename A>
   struct pointer_query_columns< ::std::Database, id_sqlite, A >:
@@ -164,6 +164,11 @@ namespace odb
 
     struct image_type
     {
+      // currency_
+      //
+      double currency_value;
+      bool currency_null;
+
       // id_
       //
       long long id_value;
@@ -174,11 +179,6 @@ namespace odb
       details::buffer user_value;
       std::size_t user_size;
       bool user_null;
-
-      // currency_
-      //
-      double currency_value;
-      bool currency_null;
 
       std::size_t version;
     };
