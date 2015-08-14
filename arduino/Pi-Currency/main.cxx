@@ -77,12 +77,15 @@ void output_persist_currency(float curr){
 
 float bytesToFloat(uchar b0, uchar b1, uchar b2, uchar b3)
 {
-    uchar byte_array[] = { b3, b2, b1, b0 };
-    float result;
-    std::copy(reinterpret_cast<const char*>(&byte_array[0]),
-              reinterpret_cast<const char*>(&byte_array[4]),
-              reinterpret_cast<char*>(&result));
-    return result;
+    union b2f{
+    	uchar c[4];
+    	float f;
+    } A;
+    A.c[0] = b0;
+    A.c[1] = b1;
+    A.c[2] = b2;
+    A.c[3] = b3;
+    return A.f;
 }
 
 unsigned long retrieve_currency(int ard){
