@@ -51,7 +51,8 @@ void output_persist_currency(float curr){
 				float old_curr;
 				old_curr = i->currency();
 				t.commit();
-				float new_curr = old_curr + curr;
+				float new_curr = curr;
+				curr = new_curr - old_curr;
 				currency.currency_ = new_curr;
 				cout << "You had " << old_curr << "dollars. You just earned " << curr << " dollars!" << endl;
 				cout << "Now you have " << new_curr << " dollars!" << endl;
