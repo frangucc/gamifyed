@@ -18,8 +18,9 @@ void setup(){
 }
 
 void loop(){
-  digitalWrite(led_pin, !led_state);
-  if (led_feedback > 200){
+  led_state = !led_state;
+  digitalWrite(led_pin, led_state);
+  if (analogRead(led_feedback) > 200){
     currency += 0.10;
   }
 }
