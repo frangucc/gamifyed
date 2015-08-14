@@ -39,7 +39,7 @@ void output_persist_currency(float curr){
 
 			if (r->empty()){
 				t.commit();
-				cout << "You had no currency. You just earned " << curr << "dollars!" << endl;
+				cout << "You had no currency. You just earned " << curr << " dollars!" << endl;
 				Database* currency = new Database("U1", curr);
 				transaction t (db->begin());
 				id = db->persist (currency);
@@ -47,14 +47,14 @@ void output_persist_currency(float curr){
 				delete currency;
 			}
 			else{
-				result::iterator i (r->begin());
+				result::iterator i (r->end());
 				float old_curr;
 				old_curr = i->currency();
 				t.commit();
 				float new_curr = old_curr + curr;
 				Database* currency = new Database("U1", new_curr);
-				cout << "You had " << old_curr << "dollars. You just earned " << curr << "dollars!" << endl;
-				cout << "Now you have " << new_curr << "dollars!" << endl;
+				cout << "You had " << old_curr << "dollars. You just earned " << curr << " dollars!" << endl;
+				cout << "Now you have " << new_curr << " dollars!" << endl;
 				transaction t (db->begin());
 				id = db->persist(currency);
 				t.commit();
